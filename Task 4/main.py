@@ -22,10 +22,10 @@
 
 canvas = [
     "abc",
-    "dedas",
+    "dedas55",
     "a",
-    "dedasaxadfdf",
-    "cdcdfvgrbcdcdcdc10",
+    "ded",
+    "cdcdf",
 ]
 
 
@@ -34,18 +34,17 @@ def add_frame(canvas):
     for element in canvas:
         if len(element) > len(longest_word):
             longest_word = element
-    print("Ilgiausias", longest_word)
-    print("X_axis", len(longest_word))
-    print("Y_axis", len(canvas))
     for y_axis in range(0, len(canvas)):
-        a = "*"
-        # print("skirtumas", (len(longest_word)-len(canvas[y_axis]))/2)
-        # print("*" + "*".join(canvas[y_axis]))
-        # [print("x") for x_axis in range(0, len(longest_word))]
-        for x_axis in range(0, len(longest_word)):
-            a = a + "*"
-        print(a)
-        # print("ilgis", len(a))
+        frame = ""
+        for x_axis in range(0, len(longest_word)+2-len(canvas[y_axis])):
+            # print(len(longest_word)-len(canvas[y_axis])+1)
+            frame = frame + "*"
+            if x_axis == (len(longest_word)+2-len(canvas[y_axis]))/2-1:
+                # print("skirtumas", (len(longest_word)-len(canvas[y_axis]))/2)
+                frame = frame + canvas[y_axis]
+        if (len(longest_word)-len(canvas[y_axis])) == 0:
+            frame = "*"+canvas[y_axis]+"*"
+        print(frame)
 
 
 add_frame(canvas)
