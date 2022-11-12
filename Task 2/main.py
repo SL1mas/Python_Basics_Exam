@@ -15,30 +15,31 @@ users = [
     {"id": '6', "name": 'Ronald Jones', "age": 63},
     {"id": '7', "name": 'Elton Smith', "age": 16},
     {"id": '8', "name": 'Simon Peterson', "age": 30},
-    # {"id": '9', "name": 'Daniel Cane', "age": 51},
+    {"id": '9', "name": 'Daniel Cane', "age": 51},
 ]
 
 
 def get_user_median_age(users):
-    print(len(users))
-    if len(users) % 2 == 0:
-        print((users[int(len(users) / 2)-1]["age"] +
-              users[int(len(users) / 2)]["age"])/2)
+    # print("Duotas vartotojų amžius", [user["age"] for user in users])
+    users2 = sorted([user["age"] for user in users])
+    # print("Surūšiuotas vartotojų amžius", users2)
+    if len(users2) % 2 == 0:
+        print("Vartotojų amžiaus mediana", (users2[int(len(users2) / 2)-1] +
+              users2[int(len(users2) / 2)])/2)
     else:
-        print(users[int((len(users) / 2))]["age"])
-
-    # return sorted([user["age"] for user in users])
+        print("Vartotojų amžiaus mediana - ", users2[int((len(users2) / 2))])
 
 
-print("Vartotojų amžiaus mediana", get_user_median_age(users))
-
-# def get_oldest_user(users):
-#     pass
+get_user_median_age(users)
 
 
-# 2.2 task
+def get_oldest_user(users):
+    print("Duotas vartotojų amžius", [user["age"] for user in users])
+    oldest_user = [user["age"] for user in users][0]
+    for user in users:
+        if user["age"] > oldest_user:
+            oldest_user = user["age"]
+    print("Vyriausio vartotojo vardas", oldest_user)
 
-# def get_users_names(users):
-#   return sorted([user["name"] for user in users])
 
-# print(get_users_names(users))
+get_oldest_user(users)
