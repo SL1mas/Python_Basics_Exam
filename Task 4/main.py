@@ -30,14 +30,22 @@ canvas = [
 
 
 def add_frame(canvas):
-    pass
+    longest_word = canvas[0]
+    for element in canvas:
+        if len(element) > len(longest_word):
+            longest_word = element
+    print("Ilgiausias", longest_word)
+    print("X_axis", len(longest_word))
+    print("Y_axis", len(canvas))
+    for y_axis in range(0, len(canvas)):
+        a = "*"
+        # print("skirtumas", (len(longest_word)-len(canvas[y_axis]))/2)
+        # print("*" + "*".join(canvas[y_axis]))
+        # [print("x") for x_axis in range(0, len(longest_word))]
+        for x_axis in range(0, len(longest_word)):
+            a = a + "*"
+        print(a)
+        # print("ilgis", len(a))
 
 
-longest_word = canvas[0]
-print("pirmas", longest_word)
-for element in canvas:
-    print(element)
-    if len(element) > len(longest_word):
-        longest_word = element
-print("Ilgiausias", longest_word)
-# print("Vyriausio vartotojo amžius:", longest_word)
+add_frame(canvas)
