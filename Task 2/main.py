@@ -34,12 +34,15 @@ get_user_median_age(users)
 
 
 def get_oldest_user(users):
-    print("Duotas vartotojų amžius", [user["age"] for user in users])
-    oldest_user = [user["age"] for user in users][0]
+    # print("Duotas vartotojų amžius", [user["age"] for user in users])
+    oldest_age = [user["age"] for user in users][0]
+
     for user in users:
-        if user["age"] > oldest_user:
-            oldest_user = user["age"]
-    print("Vyriausio vartotojo vardas", oldest_user)
+        if user["age"] > oldest_age:
+            oldest_age = user["age"]
+            oldest_name = user["name"]
+    # print("Vyriausio vartotojo amžius", oldest_age)
+    print("Vyriausio vartotojo vardas ir pavardė - ", oldest_name)
 
 
 get_oldest_user(users)
