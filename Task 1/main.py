@@ -18,7 +18,7 @@ users = [
 
 
 def filter_adult_dog_owers(users):
-    return print([user["name"] for user in users if user["hasDog"] and user["age"] > 18])
+    return print("Pilnamečiai vartotojai, kurie turi augintinį", [user["name"] for user in users if user["hasDog"] and user["age"] > 18])
 
 
 filter_adult_dog_owers(users)
