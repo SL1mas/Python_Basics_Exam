@@ -19,17 +19,18 @@ def array_multiplication(array):
         else:
             first_row_to_multiply = temporary_array
         second_row_to_multiply = array[times+1]
-        print("Row 1", first_row_to_multiply)
-        print("Row 2", second_row_to_multiply)
+        print(f"The sum(-s) of {times+1} array(-s):  {first_row_to_multiply}")
+        print(f"Multiplied by array No.{times+2}: {second_row_to_multiply}")
         times += 1
         temporary_array = []
         for columns in range(0, len(array[times])):
             multiplication = first_row_to_multiply[columns] * \
                 second_row_to_multiply[columns]
-            print("Daugyba", multiplication)
+            # print(f"Multiplied {columns+1} value", multiplication)
             temporary_array.append(multiplication)
+        print(f"Is: {temporary_array}")
     return temporary_array
 
 
 temporary_array = array_multiplication(array)
-print(temporary_array)
+print(f"The sums of {len(array)} multiplied arrays is: {temporary_array}")
