@@ -46,38 +46,67 @@
 # !!! Pastaba: Papildomas taškas, jeigu panaudosite klases. !!!
 
 ACCOUNTS = [10, 100, 20, 50, 30]
-# - "withdraw 2 10"
-# - "deposit 5 20"
-# - "transfer 5 1 20"
-print(ACCOUNTS[0])
+
+# class Terminal:
+#     def __init__(self, account, sum):
+#         self.account = account
+#         self.suma = sum
+
+#     def withdraw_command(self, account, sum):
+#         withdraw = ACCOUNTS[command_line[1]]
+#     def deposit_command(self, account, sum):
+#     def transfer_command(self, account, sum):
+
+# class Terminal_transfer(Terminal):
+#     def __init__(self, account, account_to, sum):
+#         super().__init__(self, account, sum)
+#         self.account_to = account_to
+
+# terminal = Terminal()
 
 
-def withdraw(account):
-    pass
+def withdraw(command_line):
+    ats = ACCOUNTS[int(command_line[1])-1]-int(command_line[2])
+    ACCOUNTS[int(command_line[1])-1] = ats
+    return print("Pakoreguoti duomenys", ACCOUNTS)
 
 
 def type_in_command_line():
     command_line = list(
         map(str, input("Please type in prefared command or 'help': ").split()))
-    if command_line[0] == 'help':
-        print("-=*HELP OPTIONS*=- \n Type in: \n • 'c' for command list \n • 'e' for command examples")
-        type_in_command_line()
-    if command_line[0] == "c":
-        print("-=*Command list:\n Type in: \n • 'w' for withdraw \n • 'd' for deposit \
-            \n • 't' for transfer \n • 'a' for current accounts balances")
-        type_in_command_line()
-    if command_line[0] == "e":
-        print("-=*Command examples: \n 'w 2 10' from account No.2 withdraw 10 \
-            \n 'd 3 20' deposit 20 to account No.3 \
-            \n 't 5 2 40' from account No.5 transfer 40 to account No.2 \
-            \n -=*Structure of command line: \n • letter for command\n • first number - choosing account \
-            \n • second number - amount or choosing second account (transfer command case) \
-            \n • third number - amount (transfer command case)")
-        type_in_command_line()
-    print("Command ", command_line)
+    return command_line
 
 
 command_line = type_in_command_line()
-# command_line = list(map(str, input(
-#     "Please type in prefared command or 'help': ").split()))
-# print(len(command_line))
+print("Pradiniai duomenys", ACCOUNTS)
+print(command_line[0], command_line[1], command_line[2])
+# print("Iš sąskaita", ACCOUNTS[command_line[1]])
+# print(ACCOUNTS[int(command_line[1])])
+# print(command_line[1])
+# print("Suma, kurią atims", command_line[2])
+
+ats = withdraw(command_line)
+# print("Pakoreguoti duomenys", ACCOUNTS)
+
+# def type_in_command_line():
+#     command_line = list(
+#         map(str, input("Please type in prefared command or 'help': ").split()))
+#     if command_line[0] == 'help':
+#         print("-=*HELP OPTIONS*=- \n Type in: \n • 'c' for command list \n • 'e' for command examples")
+#         type_in_command_line()
+#     if command_line[0] == "c":
+#         print("-=*Command list:\n Type in: \n • 'w' for withdraw \n • 'd' for deposit \
+#             \n • 't' for transfer \n • 'a' for current accounts balances")
+#         type_in_command_line()
+#     if command_line[0] == "e":
+#         print("-=*Command examples: \n 'w 2 10' from account No.2 withdraw 10 \
+#             \n 'd 3 20' deposit 20 to account No.3 \
+#             \n 't 5 2 40' from account No.5 transfer 40 to account No.2 \
+#             \n -=*Structure of command line: \n • letter for command\n • first number - choosing account \
+#             \n • second number - amount or choosing second account (transfer command case) \
+#             \n • third number - amount (transfer command case)")
+#         type_in_command_line()
+#     print("Command ", command_line)
+
+
+# command_line = type_in_command_line()
