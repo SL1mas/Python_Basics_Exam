@@ -79,12 +79,10 @@ class Terminal:
                 f"Operation is invalid, such account does not exist; New account balances:{ACCOUNTS}")
 
 
-class Terminal_transfer:
+class Terminal_transfer(Terminal):
     def __init__(self, command, account, account_to, sum):
-        self.command = command
-        self.account = account
+        super().__init__(command, account, sum)
         self.account_to = account_to
-        self.sum = sum
 
     def transfer_command(self):
         try:
