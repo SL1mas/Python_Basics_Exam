@@ -55,16 +55,28 @@ class Terminal:
         self.sum = sum
 
     def withdraw_command(self):
-        print("Withdraw", self.command, self.account, self.sum)
-        withdraw_ats = ACCOUNTS[int(command_line[1])-1]-int(command_line[2])
-        ACCOUNTS[int(command_line[1])-1] = withdraw_ats
-        print("Account balances after withdrawal ", ACCOUNTS)
+        try:
+            withdraw_ats = ACCOUNTS[int(
+                command_line[1])-1]-int(command_line[2])
+            if withdraw_ats >= 0:
+                ACCOUNTS[int(command_line[1])-1] = withdraw_ats
+                print(
+                    f"Operation was successful; New account balances:{ACCOUNTS}")
+            else:
+                print(
+                    f"Operation is invalid, not enough balance; New account balances:{ACCOUNTS}")
+        except:
+            print(
+                f"Operation is invalid, such account does not exist; New account balances:{ACCOUNTS}")
 
     def deposit_command(self):
-        print("Deposit", self.command, self.account, self.sum)
-        deposit_ats = ACCOUNTS[int(command_line[1])-1]+int(command_line[2])
-        ACCOUNTS[int(command_line[1])-1] = deposit_ats
-        print("Account balances after deposition", ACCOUNTS)
+        try:
+            deposit_ats = ACCOUNTS[int(command_line[1])-1]+int(command_line[2])
+            ACCOUNTS[int(command_line[1])-1] = deposit_ats
+            print(f"Operation was successful; New account balances:{ACCOUNTS}")
+        except:
+            print(
+                f"Operation is invalid, such account does not exist; New account balances:{ACCOUNTS}")
 
 
 class Terminal_transfer:
@@ -75,69 +87,58 @@ class Terminal_transfer:
         self.sum = sum
 
     def transfer_command(self):
-        transfer_from = ACCOUNTS[int(command_line[1])-1]-int(command_line[3])
-        ACCOUNTS[int(command_line[1])-1] = transfer_from
-        deposit_to = ACCOUNTS[int(command_line[2])-1]+int(command_line[3])
-        ACCOUNTS[int(command_line[2])-1] = deposit_to
-        print(
-            f"Account balances after transfer from {ACCOUNTS[int(command_line[1])-1]} \ to {ACCOUNTS[int(command_line[2])-1]}, {ACCOUNTS}")
-
-
-# def type_in_command_line():
-#     command_line = list(
-#         map(str, input("Please type in prefared command or 'help': ").split()))
-#     return command_line
-
-
-# terminal = Terminal()
-# terminal_transfer = Terminal_transfer()
-# command_line = type_in_command_line()
-#     terminal = Terminal(command_line[0], command_line[1], command_line[2])
-#     terminal_transfer = Terminal_transfer(
-#         command_line[0], command_line[1], command_line[2], command_line[3])
+        try:
+            transfer_from = ACCOUNTS[int(
+                command_line[1])-1]-int(command_line[3])
+            deposit_to = ACCOUNTS[int(command_line[2])-1]+int(command_line[3])
+            if transfer_from >= 0:
+                ACCOUNTS[int(command_line[1])-1] = transfer_from
+                deposit_to = ACCOUNTS[int(
+                    command_line[2])-1]+int(command_line[3])
+                ACCOUNTS[int(command_line[2])-1] = deposit_to
+                print(
+                    f"Operation was successful; New account balances:{ACCOUNTS}")
+            else:
+                print(
+                    f"Operation is invalid, not enough balance; New account balances:{ACCOUNTS}")
+        except:
+            print(
+                f"Operation is invalid, such account does not exist; New account balances:{ACCOUNTS}")
 
 
 while True:
-    command_line = list(
-        map(str, input("Please type in prefared command or 'help': ").split()))
-    if command_line == "w" or command_line == "d" or command_line == "t":
-        terminal = Terminal(command_line[0], command_line[1], command_line[2])
-        terminal_transfer = Terminal_transfer(
-            command_line[0], command_line[1], command_line[2], command_line[3])
-    if command_line[0] == 'help':
-        print("-=*HELP OPTIONS*=- \n Type in: \n • 'c' for command list \n • 'e' for command examples")
-    if command_line[0] == "c":
-        print("-=*Command list:\n Type in: \n • 'w' for withdraw \n • 'd' for deposit \
+    try:
+        command_line = list(map(str, input(
+            "Please type in prefared command or 'h' for help options: ").split()))
+        if command_line[0] == 'h':
+            print(
+                "-=*HELP OPTIONS*=- \n Type in: \n • 'c' for command list \n • 'e' for command examples")
+        if command_line[0] == "c":
+            print("-=*Command list:\n Type in: \n • 'w' for withdraw \n • 'd' for deposit \
             \n • 't' for transfer \n • 'a' for current accounts balances \n • 'x' for exit")
-    if command_line[0] == "e":
-        print("-=*Command examples: \n 'w 2 10' from account No.2 withdraw 10 \
+        if command_line[0] == "e":
+            print("-=*Command examples: \n 'w 2 10' from account No.2 withdraw 10 \
             \n 'd 3 20' deposit 20 to account No.3 \
             \n 't 5 2 40' from account No.5 transfer 40 to account No.2 \
             \n -=*Structure of command line: \n • letter for command\n • first number - choosing account \
             \n • second number - amount or choosing second account (transfer command case) \
             \n • third number - amount (transfer command case)")
-    if command_line[0] == "a":
-        print("Current accounts balances", ACCOUNTS)
-    if command_line[0] == "w":
-        print("Initial accounts balances", ACCOUNTS)
-        terminal.withdraw_command()
-    if command_line[0] == "d":
-        print("Initial accounts balances", ACCOUNTS)
-        terminal.deposit_command()
-    if command_line[0] == "t":
-        print("Initial accounts balances", ACCOUNTS)
-        terminal_transfer.transfer_command()
-    if command_line[0] == "x":
-        print("You have successfully log out from the terminal!")
-        break
-
-# terminal = Terminal(command_line[0], command_line[1], command_line[2])
-# terminal_transfer = Terminal_transfer(
-#     command_line[0], command_line[1], command_line[2], command_line[3])
-# if command_line[0] == "w":
-#     print("Initial accounts balances", ACCOUNTS)
-#     terminal.withdraw_command()
-#     type_in_command_line()
-# terminal.withdraw_command()
-# terminal.deposit_command()
-# terminal_transfer.transfer_command()
+        if command_line[0] == "a":
+            print("Current accounts balances", ACCOUNTS)
+        if command_line[0] == "w":
+            terminal = Terminal(
+                command_line[0], command_line[1], command_line[2])
+            terminal.withdraw_command()
+        if command_line[0] == "d":
+            terminal = Terminal(
+                command_line[0], command_line[1], command_line[2])
+            terminal.deposit_command()
+        if command_line[0] == "t":
+            terminal_transfer = Terminal_transfer(command_line[0], command_line[1],
+                                                  command_line[2], command_line[3])
+            terminal_transfer.transfer_command()
+        if command_line[0] == "x":
+            print("You have successfully log out from the terminal!")
+            break
+    except:
+        print(f"Operation is invalid, such command does not EXIST. Please type 'h' for help options!")
