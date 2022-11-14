@@ -47,28 +47,39 @@
 
 ACCOUNTS = [10, 100, 20, 50, 30]
 
-# class Terminal:
-#     def __init__(self, account, sum):
-#         self.account = account
-#         self.suma = sum
 
-#     def withdraw_command(self, account, sum):
-#         withdraw = ACCOUNTS[command_line[1]]
-#     def deposit_command(self, account, sum):
-#     def transfer_command(self, account, sum):
+class Terminal:
+    def __init__(self, command, account, sum):
+        self.command = command
+        self.account = account
+        self.sum = sum
 
-# class Terminal_transfer(Terminal):
-#     def __init__(self, account, account_to, sum):
-#         super().__init__(self, account, sum)
-#         self.account_to = account_to
+    def withdraw_command(self):
+        print("Withdraw", self.command, self.account, self.sum)
+        withdraw_ats = ACCOUNTS[int(command_line[1])-1]-int(command_line[2])
+        ACCOUNTS[int(command_line[1])-1] = withdraw_ats
+        print("Nuskaičiavo nuo balanso", ACCOUNTS)
 
-# terminal = Terminal()
+    def deposit_command(self):
+        print("Deposit", self.command, self.account, self.sum)
+        deposit_ats = ACCOUNTS[int(command_line[1])-1]+int(command_line[2])
+        ACCOUNTS[int(command_line[1])-1] = deposit_ats
+        print("Pridėjo prie balanso", ACCOUNTS)
 
 
-def withdraw(command_line):
-    ats = ACCOUNTS[int(command_line[1])-1]-int(command_line[2])
-    ACCOUNTS[int(command_line[1])-1] = ats
-    return print("Pakoreguoti duomenys", ACCOUNTS)
+class Terminal_transfer:
+    def __init__(self, command, account, account_to, sum):
+        self.command = command
+        self.account = account
+        self.account_to = account_to
+        self.sum = sum
+
+    def transfer_command(self):
+        transfer_from = ACCOUNTS[int(command_line[1])-1]-int(command_line[3])
+        ACCOUNTS[int(command_line[1])-1] = transfer_from
+        deposit_to = ACCOUNTS[int(command_line[2])-1]+int(command_line[3])
+        ACCOUNTS[int(command_line[2])-1] = deposit_to
+        print("Pervedė iš į", ACCOUNTS)
 
 
 def type_in_command_line():
@@ -79,14 +90,12 @@ def type_in_command_line():
 
 command_line = type_in_command_line()
 print("Pradiniai duomenys", ACCOUNTS)
-print(command_line[0], command_line[1], command_line[2])
-# print("Iš sąskaita", ACCOUNTS[command_line[1]])
-# print(ACCOUNTS[int(command_line[1])])
-# print(command_line[1])
-# print("Suma, kurią atims", command_line[2])
-
-ats = withdraw(command_line)
-# print("Pakoreguoti duomenys", ACCOUNTS)
+terminal = Terminal(command_line[0], command_line[1], command_line[2])
+terminal_transfer = Terminal_transfer(
+    command_line[0], command_line[1], command_line[2], command_line[3])
+terminal.withdraw_command()
+terminal.deposit_command()
+terminal_transfer.transfer_command()
 
 # def type_in_command_line():
 #     command_line = list(
