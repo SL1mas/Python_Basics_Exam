@@ -29,34 +29,38 @@ multiplied = []
 
 
 def get_sum_of_multiplied_arrays2(array1, array2):
-    transformed_array_full = []
-    for x in range(0, len(array2)):
-        transformed_array = []
-        for rows2 in array2:
-            transformed_array.append(rows2[x])
-        transformed_array_full.append(transformed_array)
-    print("Array 2", array2)
-    print("Array 2 rows transformed into columns", transformed_array_full)
-    print("Array 1", array1)
     times = 0
-    sum = 0
+
+    def get_transformed_array2(array2):
+        fully_transformed_array2 = []
+        for x in range(0, len(array2)):
+            transformed_array = []
+            for rows2 in array2:
+                transformed_array.append(rows2[x])
+            fully_transformed_array2.append(transformed_array)
+        return fully_transformed_array2
+    fully_transformed_array2 = get_transformed_array2(array2)
+
+    def get_multiplied_array_values():
+        sum = 0
+        for x in range(0, len(array1[times])):
+            multiplication = array1[times][x] * \
+                fully_transformed_array2[amount][x]
+            sum += multiplication
+        multiplied_x.append(sum)
+        print("Multiplied value(-s)", multiplied_x)
+        return multiplied_x
+
+    print("Array 2", array2)
+    print("Array 2 rows transformed into columns", fully_transformed_array2)
+    print("Array 1", array1)
+
     for rows in array1:
         print(f"**********{times+1}**********")
         amount = 0
         multiplied_x = []
         while amount <= len(array1[times])-1:
-            sum = 0
-            # print(f"Array1 row {times+1} {rows}")
-            # print(
-            #     f"Transformed array2 column {amount+1}: {transformed_array_full[amount]}")
-            for x in range(0, len(array1[times])):
-                # print("First number", array1[times][x])
-                # print("Second number", transformed_array_full[amount][x])
-                multiplication = array1[times][x] * \
-                    transformed_array_full[amount][x]
-                sum += multiplication
-            multiplied_x.append(sum)
-            print("Multiplied value(-s)", multiplied_x)
+            get_multiplied_array_values()
             amount += 1
         times += 1
         multiplied.append(multiplied_x)
