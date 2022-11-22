@@ -75,3 +75,20 @@ def get_multiplied_arrays_method2(array1, array2):
 get_multiplied_arrays_method2(array1, array2)
 print(f"First method of {len(array1)} arrays multiplication: {result}")
 print(f"Second method of {len(array1)} arrays multiplication: {multiplied}")
+
+# ***Third method***
+
+result2 = []
+for i in range(len(array1[0])):
+    arrR = []
+    for j in range(len(array2)):
+        arrR.append(0)
+    result2.append(arrR)
+for i in range(len(array1)):
+    for j in range(len(array2[0])):
+        for k in range(len(array2)):
+            result2[i][j] = array1[i][k] * array2[k][j] + result2[i][j]
+
+print(f"Third method of {len(array1)} arrays multiplication:")
+for y in result2:
+    print(y)
