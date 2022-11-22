@@ -87,7 +87,7 @@ for i in range(len(array1[0])):
 for i in range(len(array1)):
     for j in range(len(array2[0])):
         for k in range(len(array2)):
-            result2[i][j] = array1[i][k] * array2[k][j] + result2[i][j]
+            result2[i][j] += array1[i][k] * array2[k][j]
 
 print(f"Third method of {len(array1)} arrays multiplication:")
 for y in result2:
